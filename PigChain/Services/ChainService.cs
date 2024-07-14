@@ -9,6 +9,7 @@ public class ChainService : IChainService
     {
         return new Block()
         {
+            Id = id,
             Message = "First Block Get by Id"
         };
         
