@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using PigChain.Models.Chain;
 using PigChain.Models.Http;
 using PigChain.Repositories;
 using PigChain.Repositories.Interfaces;
+using PigChain.Services;
+using PigChain.Services.Interfaces;
 
 namespace PigChain.Controllers;
 
@@ -21,24 +22,7 @@ public class ChainControllers(IChainRepository chainRepository, IChainService ch
     [HttpGet("{id}")]
     public async Task<PigApiResponse> GetBlockById(int id)
     {
-        var block = await chainService.GetBlockBy();
+        var block = await chainService.GetBlockBy(id);
         return PigApiResponse.SuccessWithData(block);
-    }
-}
-
-public interface IChainService
-{
-    Task<Block> GetBlockBy();
-}
-
-public class ChainService : IChainService
-{
-    public async Task<Block> GetBlockBy()
-    {
-        return new Block()
-        {
-            Message = "First Block Get by Id"
-        };
-        
     }
 }

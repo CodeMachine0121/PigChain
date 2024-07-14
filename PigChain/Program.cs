@@ -1,6 +1,8 @@
 using PigChain.Controllers;
 using PigChain.Repositories;
 using PigChain.Repositories.Interfaces;
+using PigChain.Services;
+using PigChain.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
