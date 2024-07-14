@@ -1,3 +1,6 @@
+using PigChain.Repositories;
+using PigChain.Repositories.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddTransient<IChainRepository, ChainRepository>();
 
 var app = builder.Build();
 app.UseRouting();

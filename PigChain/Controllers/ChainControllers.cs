@@ -1,31 +1,19 @@
-using System.Net;
 using Microsoft.AspNetCore.Mvc;
+using PigChain.Models.Http;
+using PigChain.Repositories;
+using PigChain.Repositories.Interfaces;
 
 namespace PigChain.Controllers;
 
 [Route("api/[controller]")]
-public class ChainControllers: ControllerBase
+public class ChainControllers(IChainRepository chainRepository) : ControllerBase
 {
 
     [HttpGet("")]
     public async Task<PigApiResponse> GetAll()
     {
-        return PigApiResponse.SuccessWithData("Success Chain");
+        var allChain = await chainRepository.FetchAll();
+        return PigApiResponse.SuccessWithData(allChain);
     }
  
-}
-
-
-public class PigApiResponse
-{
-    public string Message { get; set; }
-    public string Status { get; set; }
-    public object Data { get; set; }
-    
-    public static PigApiResponse SuccessWithData(object data) => new PigApiResponse()
-    {
-        Message = "Success with Data",
-        Status = HttpStatusCode.OK.ToString(),
-        Data = data
-    };
 }
