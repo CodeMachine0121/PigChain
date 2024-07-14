@@ -16,4 +16,10 @@ public class ChainRepository : IChainRepository
             }
         };
     }
+
+    public async Task<Block> Fetch(int blockId)
+    {
+        return new Block(){};
+        
+    }
 }

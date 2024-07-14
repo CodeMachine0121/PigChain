@@ -1,17 +1,16 @@
 using PigChain.Models.Chain;
+using PigChain.Repositories.Interfaces;
 using PigChain.Services.Interfaces;
 
 namespace PigChain.Services;
 
-public class ChainService : IChainService
+public class ChainService(IChainRepository chainRepository) : IChainService
 {
+
     public async Task<Block> GetBlockBy(int id)
     {
-        return new Block()
-        {
-            Id = id,
-            Message = "First Block Get by Id"
-        };
+        var block = await chainRepository.Fetch(id);
         
+        return block;
     }
 }
