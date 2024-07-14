@@ -1,3 +1,4 @@
+using PigChain.Controllers;
 using PigChain.Repositories;
 using PigChain.Repositories.Interfaces;
 
@@ -10,6 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddTransient<IChainRepository, ChainRepository>();
+builder.Services.AddTransient<IChainService, ChainService>();
 
 var app = builder.Build();
 app.UseRouting();
